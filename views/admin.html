@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>[onshow.message]</h1>
+    <form action="../controllers/admin.php" method="POST">
+        <input type="text" placeholder="title" name="title">
+        <input type="text" placeholder="description" name="description">
+        <input name="difficulty" type="radio" id="begginer" value="0"><label for="begginer">begginer</label>
+        <input name="difficulty" type="radio" id="easy" value="1"><label for="easy">easy</label>
+        <input name="difficulty" type="radio" id="medium" value="2"><label for="medium">medium</label>
+        <input name="difficulty" type="radio" id="hard" value="3"><label for="hard">hard</label>
+        <input name="difficulty" type="radio" id="impossible" value="4"><label for="impossible">impossible</label>
+        <input type="number" placeholder="nombre de points" name="nbPoints">
+        <input type="url" placeholder="entrer l'url du challenge" name="urlChallenge">
+        <input type="submit">
+    </form>
+</body>
+</html>
