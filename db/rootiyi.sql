@@ -1,9 +1,12 @@
 
 CREATE TABLE IF NOT EXISTS `challenge` (
   `challengeId` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `categoryId` smallint(5) unsigned NOT NULL DEFAULT '0',
   `title` varchar(30) NOT NULL DEFAULT '',
   `description` varchar(250) NOT NULL DEFAULT '',
   `urlChallenge` varchar(255) NOT NULL DEFAULT '',
+  `flag` varchar(40) NOT NULL DEFAULT '',
+  `nbPoints` int NOT NULL DEFAULT '5',
   `difficulty` smallint(5) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`challengeId`)
 );

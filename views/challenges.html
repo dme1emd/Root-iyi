@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[onshow.message]</title>
+</head>
+<body>
+    <h1>[onshow.message]</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <!-- Ajoutez d'autres colonnes si nécessaire -->
+            </tr>
+        </thead>
+        <tbody>
+            [row;block=begin]
+                <tr>
+                    <td>[row.challengeId]</td>
+                    <td>[row.title]</td>
+                    <td>[row.description]</td>
+                </tr>
+            [row;block=end]
+        </tbody>
+    </table>
+</body>
+</html>
