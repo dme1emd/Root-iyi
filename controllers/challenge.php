@@ -24,7 +24,7 @@
             $res->execute();
             $row = $res->fetch(PDO::FETCH_ASSOC);
             if($row){
-                $message="félicitations vous avez resolu le challenge " . $row["title"]; // todo: check if it wasn't solved yet by the player
+                $message="félicitations vous avez resolu le challenge " . $row["title"];//TODO: verify the user didn't solve this yet 
             }
             else{
                 $message="not ok";
