@@ -1,0 +1,1 @@
+ALTER TABLE `user` ADD COLUMN `isAdmin` BOOLEAN DEFAULT FALSE --add field is admin
