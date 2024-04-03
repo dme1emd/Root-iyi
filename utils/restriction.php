@@ -61,4 +61,9 @@
             die();
         }
     }
+    function is_user($id){
+        if(isset($_SESSION["pseudo"])){
+            return  $_SESSION["userId"] == $id; 
+        }
+    }
 ?>

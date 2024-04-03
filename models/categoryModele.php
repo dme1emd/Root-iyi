@@ -1,6 +1,6 @@
 <?php
     require("../connect.php");
-    $pdo = new PDO("mysql:host=mysql02.univ-lyon2.fr;dbname=php_moaliouche;charset=utf8mb4", "php_moaliouche", "xpf-FeenJiA7mEP4TE1KbuO4n");
+    $pdo = new PDO($host,$login,$password);
     class Category{
         private $title;
         public function __construct($title="") {

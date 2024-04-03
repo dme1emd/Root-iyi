@@ -2,11 +2,9 @@
     require("../../tbs_3150/tbs_class.php");
     require("../connect.php");
     require("../utils/restriction.php");
-    only_unauth();
     $tbs = new clsTinyButStrong;
-    if (!session_id()) {
-        session_start();
-    }
+    session_start();
+    only_unauth();
     try {
         $pdo = new PDO($host, $login, $password);
         $message = "connexion établie";

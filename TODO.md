@@ -9,5 +9,6 @@
 
 ## Enhancements
 - [ ] updating the db when a user solves a challenge is vulnerable to race condition, use transactions
+- [ ] updating the db when a user solves a challenge is vulnerable to race condition, use transactions
 
 

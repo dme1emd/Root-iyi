@@ -1,6 +1,6 @@
 <?php
     include("../connect.php");
-    $pdo = new PDO("mysql:host=mysql02.univ-lyon2.fr;dbname=php_moaliouche;charset=utf8mb4", "php_moaliouche", "xpf-FeenJiA7mEP4TE1KbuO4n");
+    $pdo = new PDO($host,$login,$password);
     class Challenge{
         private $categoryId;
         private $title;
@@ -18,7 +18,7 @@
             $this->nbPoints = $nbPoints;
             $this->difficulty = $difficulty;
         }
-        public function addChallenge(){
+        public function save(){
             global $pdo;
             $res=$pdo->prepare("INSERT INTO `challenge` (`categoryId`,`title`,`description`,`urlChallenge`,`flag`,`nbPoints`,`difficulty`) VALUES (:categoryId,:title,:description,:urlChallenge,:flag,:nbPoints,:difficulty);");
             $res->bindParam(":title",$this->title);
@@ -38,7 +38,7 @@
             $row = $res->fetch(PDO::FETCH_ASSOC);
             return $row;
         }
-        public static function validate($challengeId , $userId){
+        public static function validate($userId,$challengeId){
             global $pdo;
             $res = $pdo->prepare("SELECT * FROM `resolution` WHERE userId=:userId AND challengeId=:challengeId;");
             $res->bindParam(":challengeId",$challengeId);
@@ -48,16 +48,14 @@
             if($row["resolved"]){
                 return false;
             }
-            else{
-                // this can be vulnerable to race condition
-                $res = $pdo->prepare("
+            $res = $pdo->prepare("
                 UPDATE `user` SET nbPoints = nbPoints + (SELECT nbPoints FROM `challenge` WHERE challengeId=:challengeId) WHERE userId=:userId;
                 UPDATE `resolution` SET resolved = 1 Where userId=:userId AND challengeId=:challengeId;
-                ");
-                $res->bindParam(":challengeId",$challengeId);
-                $res->bindParam(":userId",$userId);
-                $res->execute();
-            }
+            ");
+            $res->bindParam(":challengeId",$challengeId);
+            $res->bindParam(":userId",$userId);
+            $res->execute();
+            return true;
         }
     }
 ?>
