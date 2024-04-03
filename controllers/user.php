@@ -9,7 +9,11 @@
         die();
     }
     $user = "User"::retreiveUser($_GET["userId"]);
+    $pseudo = $user["pseudo"];
+    $userId = $user["userId"];
+    $nbPoints = $user["nbPoints"];
     if(is_user($_GET["userId"])){
+        $mail = $user["mail"];
         $template="personal-profile.html";
     }
     else{

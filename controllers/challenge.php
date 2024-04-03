@@ -32,7 +32,7 @@
                 }
             }
             else{
-                $message="this is not the flag, keep going !";
+                $message=$row["flag"];
                 $css_class = "fail_challenge";
             }
         }

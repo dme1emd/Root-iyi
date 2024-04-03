@@ -13,7 +13,7 @@
             $this->categoryId = $categoryId;
             $this->title = $title;
             $this->description = $description;
-            $this->urlChalllenge = $urlChalllenge;
+            $this->urlChallenge = $urlChallenge;
             $this->flag = $flag;
             $this->nbPoints = $nbPoints;
             $this->difficulty = $difficulty;
