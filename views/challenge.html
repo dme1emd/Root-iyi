@@ -11,8 +11,9 @@
     <p>[onshow.description]</p>
     <p>difficulty: [onshow.difficulty]</p> essaie iopjzifsdhkbfj
     <p>to solve the challenge <a href="[onshow.urlChallenge]">click here</a></p>
-    <form method="POST" action="../controllers/challenge.php?challengeId=[onshow.challengeId]">
-        <input type="text" placeholder="flag" name="flag"> 
+    <form method="POST" action="../controllers/challenge.php">
+        <input type="text" placeholder="flag" name="flag">
+        <input type="hidden" value="[onshow.challengeId]" name="id"/>
         <input type="submit">
     </form>
 </body>

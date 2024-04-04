@@ -39,21 +39,22 @@
             return $row;
         }
         public static function validate($userId,$challengeId){
+            return false;
             global $pdo;
             $res = $pdo->prepare("SELECT * FROM `resolution` WHERE userId=:userId AND challengeId=:challengeId;");
             $res->bindParam(":challengeId",$challengeId);
             $res->bindParam(":userId",$userId);
             $res->execute();
             $row = $res->fetch(PDO::FETCH_ASSOC);
-            if($row["resolved"]){
+            if($row){
                 return false;
             }
-            $res = $pdo->prepare("
-                UPDATE `user` SET nbPoints = nbPoints + (SELECT nbPoints FROM `challenge` WHERE challengeId=:challengeId) WHERE userId=:userId;
-                UPDATE `resolution` SET resolved = 1 Where userId=:userId AND challengeId=:challengeId;
-            ");
-            $res->bindParam(":challengeId",$challengeId);
+            $res = $pdo->prepare("UPDATE `user` SET nbPoints = nbPoints + (SELECT nbPoints FROM `challenge` WHERE challengeId=:challengeId) WHERE userId=:userId;");
             $res->bindParam(":userId",$userId);
+            $res->execute();
+            $res = $pdo->prepare("INSERT INTO resolution (userId,challengeId) VALUES (:userId,:challengeId);");
+            $res->bindParam(":userId",$userId);
+            $res->bindParam(":challengeId",$challengeId);
             $res->execute();
             return true;
         }

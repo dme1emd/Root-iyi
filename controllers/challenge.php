@@ -21,8 +21,18 @@
         }
         if(isset($_POST["flag"])){
             only_auth();
+            $row="Challenge"::retreiveChallenge($_POST["id"]);
+            $title=$row["title"];
+            $description=$row["description"];
+            $urlChallenge=$row["urlChallenge"];
+            $difficulty=$row["difficulty"];
+            $challengeId=$row["challengeId"];
             if($row["flag"] == $_POST["flag"]){
-                if("Challenge"::validate($_SESSION["userId"],$row["challengeId"])){
+                only_auth();
+                if("Challenge"::validate($_SESSION["userId"],$challengeId)){
+                    $res = $pdo->prepare("INSERT INTO resolution (userId,challengeId) VALUES (:userId,:challengeId);");
+                    $res->bindParam(":userId",$_SESSION["userId"]);
+                    $res->bindParam(":challengeId",$challengeId);
                     $message = "congratulations you got it right you win " . $row["nbPoints"] . " points.";
                     $css_class = "success_challenge";
                 }
@@ -32,7 +42,7 @@
                 }
             }
             else{
-                $message=$row["flag"];
+                $message="wrong flag try again";
                 $css_class = "fail_challenge";
             }
         }
