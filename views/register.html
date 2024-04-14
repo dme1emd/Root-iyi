@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <script src="../static/regiter.js" defer></script>
+</head>
+<body>
+    <form action="../controllers/register.php" method="POST">
+        <label for="email">enter your mail</label>
+        <input type="email" id="email" name="email" required>
+        <label for="pseudo">enter your pseudo</label>
+        <input type="text" name="pseudo" id="pseudo" required>
+        <label for="password">enter your password</label>
+        <input type="password" name="password" id="password" required>
+        <label for="passwordconf">confirm your password</label>
+        <input type="password" id="passwordconf" required>
+        <input type="submit" disabled>
+        <div class="message">
+            [onshow.message]
+        </div>
+    </form>
+    <div>you already have an account ? <a href="../controllers/login.php">click here to login</a></div>
+</body>
+</html>

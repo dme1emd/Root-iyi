@@ -2,36 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>[onshow.message]</title>
+    <title>challenges</title>
+    <script src="../scripts/header.js" defer></script>
 </head>
 <body>
     <header>
         <nav>
             <ul>
                 <li>
-                    <a href="../controllers/logout.php">deconnexion</a>
+                    <a href="../controllers/logout.php" id="[onshow.connexion_status]">deconnexion</a>
                 </li>
             </ul>
         </nav>
     </header>
     <h1>[onshow.message]</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nom</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
             [row;block=begin]
-                <tr>
-                    <td>[row.challengeId]</td>
-                    <td>[row.title]</td>
-                    <td>[row.description]</td>
-                </tr>
+            <div class="challenge">
+                <a href="/~moaliouche/tp-php/Root-iyi/controllers/challenge.php?id=[row.challengeId]">
+                    [row.title]
+                </a>
+                <div class="points">[row.nbPoints]</div>
+                <div class="difficulty">[row.difficulty]</div>
+            </div>
+
             [row;block=end]
-        </tbody>
-    </table>
 </body>
 </html>

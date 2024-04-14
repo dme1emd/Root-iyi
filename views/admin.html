@@ -4,19 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/admin.css">
+    <script src="../static/admin.js" defer></script>
     <title>Document</title>
 </head>
 <body>
-    <h1>[onshow.message]</h1>
-    <form action="../controllers/admin.php" method="POST">
+    <h1>Admin panel</h1>
+    <button class="add-challenge">add challenge</button>
+    <form action="../controllers/admin.php" method="POST" class="add-challenge">
         <input type="text" placeholder="title" name="title">
         <input type="text" placeholder="description" name="description">
-        <input name="difficulty" type="radio" id="begginer" value="0"><label for="begginer">begginer</label>
-        <input name="difficulty" type="radio" id="easy" value="1"><label for="easy">easy</label>
-        <input name="difficulty" type="radio" id="medium" value="2"><label for="medium">medium</label>
+        <div>
+            <input name="difficulty" type="radio" id="begginer" value="0"><label for="begginer">begginer</label>
+        </div>
+        <div>
+            <input name="difficulty" type="radio" id="easy" value="1"><label for="easy">easy</label>
+        </div>
+        <div>
+            <input name="difficulty" type="radio" id="medium" value="2"><label for="medium">medium</label>
+        </div>
+        <div>
         <input name="difficulty" type="radio" id="hard" value="3"><label for="hard">hard</label>
-        <input name="difficulty" type="radio" id="impossible" value="4"><label for="impossible">impossible</label>
+        </div>
+        <div>
+            <input name="difficulty" type="radio" id="impossible" value="4"><label for="impossible">impossible</label>
+        </div>
         <input type="number" placeholder="nombre de points" name="nbPoints">
+        <div>
+            <label for="category">
+                category
+            </label>
+            <select name="category" id="category">
+                [row;block=begin]
+                    <option value="[row.categoryId]">[row.title]</option>
+                [row;block=end]
+            </select>
+        </div>
+
         <input type="url" placeholder="entrer l'url du challenge" name="urlChallenge">
         <input type="text" placeholder="entrer le flag" name="flag">
         <input type="submit">

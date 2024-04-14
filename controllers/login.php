@@ -1,7 +1,8 @@
 <?php
-    require("../../tbs_3150/tbs_class.php");
-    require("../connect.php");
-    require("../utils/restriction.php");
+    include_once "../../tbs_3150/tbs_class.php";
+    include_once "../connect.php";
+    include_once "../utils/restriction.php";
+    include_once "../context/authContext.php";
     $tbs = new clsTinyButStrong;
     session_start();
     only_unauth();
@@ -15,7 +16,7 @@
             $res->execute();
             $row = $res->fetch(PDO::FETCH_ASSOC);
             if($row){
-                $message="connected";//TODO:start a session
+                $message="connected";
                 $_SESSION["userId"] = $row["userId"];
                 $_SESSION["pseudo"]= $row["pseudo"];
                 $_SESSION["password"]=$row["password"];

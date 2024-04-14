@@ -1,16 +1,19 @@
 <?php
-    include("../../tbs_3150/tbs_class.php");
-    include("../connect.php");
-    include("../utils/restriction.php");
-    include("../models/challengeModele.php");
+    include_once "../../tbs_3150/tbs_class.php";
+    include_once "../connect.php";
+    include_once "../utils/restriction.php";
+    include_once "../models/challengeModele.php";
+    include_once "../models/categoryModele.php";
+    include_once "../context/authContext.php";
     session_start();
-    admin_only();
+    //admin_only();
+    $rows = "Category"::retreiveCategories();
     $tbs = new clsTinyButStrong;
         if(isset($_POST["title"])){
-            //pass the category id in the form for later
-            $chl = new Challenge(1,$_POST["title"],$_POST["description"],$_POST["urlChallenge"],$_POST["flag"],$_POST["nbPoints"],$_POST["difficulty"]);
+            $chl = new Challenge($_POST["category"],$_POST["title"],$_POST["description"],$_POST["urlChallenge"],$_POST["flag"],$_POST["nbPoints"],$_POST["difficulty"]);
             $chl->save();
         }
     $tbs->LoadTemplate("../views/admin.html");
+    $tbs->MergeBlock("row",$rows);
     $tbs->Show();
 ?>

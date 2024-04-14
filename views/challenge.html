@@ -4,17 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="../scripts/header.js" defer></script>
 </head>
 <body>
-    <h1>challenge: [onshow.title] [onshow.message]</h1>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="../controllers/logout.php" id="[onshow.connexion_status]">deconnexion</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <h1 id="[onshow.id]">challenge: [onshow.title] [onshow.message]</h1>
     <h2>description</h2>
     <p>[onshow.description]</p>
-    <p>difficulty: [onshow.difficulty]</p> essaie iopjzifsdhkbfj
+    <p>difficulty: [onshow.difficulty]</p>
     <p>to solve the challenge <a href="[onshow.urlChallenge]">click here</a></p>
     <form method="POST" action="../controllers/challenge.php">
         <input type="text" placeholder="flag" name="flag">
         <input type="hidden" value="[onshow.challengeId]" name="id"/>
-        <input type="submit">
+        <input type="submit" class="[onshow.connexion_status]">
     </form>
+    <script>
+        window.onload= ()=>{
+            const urlParams = new URLSearchParams(window.location.search);
+            const myParam = urlParams.get('id');
+            if(!myParam)
+                history.pushState({}, "challenge", window.location + "?id=" +document.querySelector("h1").id)
+            document.querySelector(`input[type="submit"]`).disabled = ( "not-connected" in document.querySelector(`input[type="submit"]`).classList)
+            }
+
+    </script>
 </body>
 </html>

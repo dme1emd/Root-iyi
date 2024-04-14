@@ -1,5 +1,7 @@
 <?php
-    include("../connect.php");
+    include_once "../connect.php";
+    include_once "../models/userModele.php";
+    include_once "../models/resolutionModele.php";
     $pdo = new PDO($host,$login,$password);
     class Challenge{
         private $categoryId;
@@ -38,8 +40,15 @@
             $row = $res->fetch(PDO::FETCH_ASSOC);
             return $row;
         }
+        public static function retreiveChallenges($id){
+            global $pdo;
+            $res = $pdo->prepare("SELECT * FROM `challenge` WHERE `categoryId`=:categoryId;");
+            $res->bindParam(":categoryId",$_GET["category"]);
+            $res->execute();
+            $rows = $res->fetchAll(PDO::FETCH_ASSOC);
+            return $rows;
+        }
         public static function validate($userId,$challengeId){
-            return false;
             global $pdo;
             $res = $pdo->prepare("SELECT * FROM `resolution` WHERE userId=:userId AND challengeId=:challengeId;");
             $res->bindParam(":challengeId",$challengeId);
@@ -49,13 +58,9 @@
             if($row){
                 return false;
             }
-            $res = $pdo->prepare("UPDATE `user` SET nbPoints = nbPoints + (SELECT nbPoints FROM `challenge` WHERE challengeId=:challengeId) WHERE userId=:userId;");
-            $res->bindParam(":userId",$userId);
-            $res->execute();
-            $res = $pdo->prepare("INSERT INTO resolution (userId,challengeId) VALUES (:userId,:challengeId);");
-            $res->bindParam(":userId",$userId);
-            $res->bindParam(":challengeId",$challengeId);
-            $res->execute();
+            "User"::win($userId,$challengeId);
+            $reso = new Resolution($userId,$challengeId);
+            $reso->save();
             return true;
         }
     }

@@ -1,9 +1,9 @@
 <?php
     require("../connect.php");
+    include_once "../models/userModele.php";
     session_start();
-    function only_auth(){
+    function is_connected(){
         if(isset($_SESSION["pseudo"])){
-            try {
                 global $host;
                 global $login;
                 global $password;
@@ -14,50 +14,31 @@
                 $res->execute();
                 $row = $res->fetch(PDO::FETCH_ASSOC);
                 if($row){
-                    return $row;
+                    return true;
                 }
-                else{
-                    header("Location: /~moaliouche/tp-php/rootiyi/controllers/login.php");
-                    die();
-                }
-            }
-            catch (PDOException $erreur) {
-                $message = $erreur->getMessage();
-            }
+                return false;
         }
     }
-        function only_unauth(){
-            if(isset($_SESSION["pseudo"])){
-                try {
-                    global $host;
-                    global $login;
-                    global $password;
-                    $pdo = new PDO($host, $login, $password);
-                    $res=$pdo->prepare("SELECT * FROM `user` WHERE pseudo=:pseudo AND password=:password");
-                    $res->bindParam(":pseudo",$_SESSION["pseudo"]);
-                    $res->bindParam(":password",$_SESSION["password"]);
-                    $res->execute();
-                    $row = $res->fetch(PDO::FETCH_ASSOC);
-                    if($row){
-                        header("Location: /~moaliouche/tp-php/rootiyi/controllers/challenges.php");
-                        die();
-                    }
-                    else{
-                       return 1;
-                    }
-                }
-                catch (PDOException $erreur) {
-                    $message = $erreur->getMessage();
-                }
-            }
-            else{
-                return 1;
-            }
+    function only_auth(){
+        if(!is_connected()){
+            header("Location: /~moaliouche/tp-php/Root-iyi/controllers/challenges.php");
+            die();
+        }
+    }
+    function only_unauth(){
+        if(is_connected()){
+            header("Location: /~moaliouche/tp-php/Root-iyi/controllers/challenges.php");
+            die();
+        }
+        else{
+            return 1;
+        }
     }
     function admin_only(){
-        $row = only_auth();
-        if(!$row["isAdmin"]){
-            header("Location: /~moaliouche/tp-php/rootiyi/controllers/challenges.php");
+        only_auth();
+        $row = "User"::retreiveUser($_SESSION["userId"]);
+        if($row["isAdmin"] != 1){
+            header("Location: /~moaliouche/tp-php/Root-iyi/controllers/challenges.php?category=1");
             die();
         }
     }

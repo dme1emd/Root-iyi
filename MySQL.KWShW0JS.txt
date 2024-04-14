@@ -1,0 +1,4 @@
+serveur MySQL      : mysql02.univ-lyon2.fr
+utilisateur        : php_moaliouche
+base de données    : php_moaliouche
+mot de passe MySQL : xpf-FeenJiA7mEP4TE1KbuO4n

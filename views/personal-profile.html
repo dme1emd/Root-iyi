@@ -6,23 +6,31 @@
     <title>Document</title>
 </head>
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="../controllers/logout.php" id="connected">deconnexion</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
     <h1>[onshow.pseudo]</h1>
     <div>you have :[onshow.nbPoints] points</div>
     <div>[onshow.mail]</div>
-    <form action="/~moaliouche/tp-php/rootiyi/controllers/user.php" method="POST">
+    <form action="/~moaliouche/tp-php/Root-iyi/controllers/user.php" method="POST">
         <input type="email" placeholder="changer votre mail">
         <input type="submit">
     </form>
-    <form action="/~moaliouche/tp-php/rootiyi/controllers/user.php" method="POST">
-        <input type="password" placeholder="enter your current password">
-        <input type="password" placeholder="enter your new password">
+    <form action="/~moaliouche/tp-php/Root-iyi/controllers/user.php" method="POST">
+        <input type="password" placeholder="enter your current password" name="current">
+        <input type="password" placeholder="enter your new password" name="new">
         <input type="password" placeholder="confirm your new passwors">
+        <input type="hidden" name="userId" value="[onshow.userId]"/>
         <input type="submit">
     </form>
-    <form action="/~moaliouche/tp-php/rootiyi/controllers/user.php" method="POST">
-        <input type="email" placeholder="changer votre mail">
-    </form>
-    maybe a bio here<br/>
-    maybe a profile pic for later
+    <div class="message">
+        [onshow.message]
+    </div>
 </body>
 </html>
