@@ -6,6 +6,30 @@
     session_start();
     $tbs = new clsTinyButStrong;
     $message ="";
+    if(is_connected()){
+        $connexionStatus = "connected";
+        $connexionNavBar = "logout";
+        $nav = "profile";
+        $navLink = "user";
+    }
+    else{
+        $connexionStatus = "not-connected";
+        $connexionNavBar = "login";
+        $nav = "register";
+        $navLink = "register";
+    }
+    if(is_connected()){
+        $connexionStatus = "connected";
+        $connexionNavBar = "logout";
+        $nav = "profile";
+        $navLink = "profile";
+    }
+    else{
+        $connexionStatus = "not-connected";
+        $connexionNavBar = "login";
+        $nav = "register";
+        $navLink = "register";
+    }
     if(isset($_GET["userId"])){ // if the userId param not given redirect to challenges
         $user = "User"::retreiveUser($_GET["userId"]);
         $pseudo = $user["pseudo"];

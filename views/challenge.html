@@ -11,12 +11,22 @@
         <nav>
             <ul>
                 <li>
-                    <a href="../controllers/logout.php" id="[onshow.connexion_status]">deconnexion</a>
+                    <a href="../controllers/[onshow.connexionNavBar].php">[onshow.connexionNavBar]</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="../controllers/home.php">home</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="../controllers/[onshow.navLink].php">[onshow.nav]</a>
                 </li>
             </ul>
         </nav>
     </header>
-    <h1 id="[onshow.id]">challenge: [onshow.title] [onshow.message]</h1>
+    <h1 id="[onshow.id]">challenge: [onshow.title]</h1>
     <h2>description</h2>
     <p>[onshow.description]</p>
     <p>difficulty: [onshow.difficulty]</p>
@@ -24,8 +34,11 @@
     <form method="POST" action="../controllers/challenge.php">
         <input type="text" placeholder="flag" name="flag">
         <input type="hidden" value="[onshow.challengeId]" name="id"/>
-        <input type="submit" class="[onshow.connexion_status]">
+        <input type="submit">
     </form>
+    <div>
+        [onshow.message]
+    </div>
     <script>
         window.onload= ()=>{
             const urlParams = new URLSearchParams(window.location.search);

@@ -3,10 +3,24 @@
     include_once "../models/challengeModele.php";
     include_once "../connect.php";
     include_once "../context/authContext.php";
+    include_once "../utils/restriction.php";
     $tbs = new clsTinyButStrong;
+    if(is_connected()){
+        $connexionStatus = "connected";
+        $nav = "profile";
+        $navLink = "user";
+        $connexionNavBar = "logout";
+
+    }
+    else{
+        $connexionStatus = "not-connected";
+        $nav = "register";
+        $navLink = "register";
+        $connexionNavBar = "login";
+    }
     try {
         $pdo = new PDO($host, $login, $password);
-        $message = "connexion établie";
+        $message="";
         if(isset($_GET["category"])){
             $rows = "Challenge"::retreiveChallenges($_GET["category"]);
             $tbs->LoadTemplate("../views/challenges.html");

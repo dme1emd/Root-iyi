@@ -6,12 +6,17 @@
     include_once "../models/challengeModele.php";
     include_once "../context/authContext.php";
     session_start();
+    $message="";
     $tbs = new clsTinyButStrong;
     if(is_connected()){
-        $connexionStatus = "connected";
+        $nav = "profile";
+        $navLink = "user";
+        $connexionNavBar = "logout";
     }
     else{
-        $connexionStatus = "not-connected";
+        $nav = "register";
+        $navLink = "register";
+        $connexionNavBar = "login";
     }
     try {
         $pdo = new PDO($host, $login, $password);

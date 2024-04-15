@@ -8,6 +8,18 @@
     session_start();
     only_unauth();
     $message = "";
+    if(is_connected()){
+        $connexionStatus = "connected";
+        $connexionNavBar = "logout";
+        $nav = "profile";
+        $navLink = "user";
+    }
+    else{
+        $connexionStatus = "not-connected";
+        $connexionNavBar = "login";
+        $nav = "register";
+        $navLink = "register";
+    }
     try {
         $pdo = new PDO($host, $login, $password);
         if(isset($_POST["pseudo"])){

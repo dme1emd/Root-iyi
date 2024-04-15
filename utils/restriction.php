@@ -37,7 +37,7 @@
     function admin_only(){
         only_auth();
         $row = "User"::retreiveUser($_SESSION["userId"]);
-        if($row["isAdmin"] != 1){
+        if(!$row["isAdmin"]){
             header("Location: /~moaliouche/tp-php/Root-iyi/controllers/challenges.php?category=1");
             die();
         }

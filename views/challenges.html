@@ -6,14 +6,24 @@
     <script src="../scripts/header.js" defer></script>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li>
-                    <a href="../controllers/logout.php" id="[onshow.connexion_status]">deconnexion</a>
-                </li>
-            </ul>
-        </nav>
+    <nav>
+        <ul>
+            <li>
+                <a href="../controllers/[onshow.connexionNavBar].php">[onshow.connexionNavBar]</a>
+
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="../controllers/home.php">home</a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="../controllers/[onshow.navLink].php">[onshow.nav]</a>
+            </li>
+        </ul>
+    </nav>
     </header>
     <h1>[onshow.message]</h1>
             [row;block=begin]

@@ -34,7 +34,7 @@
         }
         public static function retreiveUser($id){
             global $pdo;
-            $res=$pdo->prepare("SELECT userId,pseudo,mail,nbPoints FROM `user` WHERE `userId`=:userId;");
+            $res=$pdo->prepare("SELECT userId,pseudo,mail,nbPoints,isAdmin FROM `user` WHERE `userId`=:userId;");
             $res->bindParam(":userId",$id);
             $res->execute();
             $row = $res->fetch(PDO::FETCH_ASSOC);

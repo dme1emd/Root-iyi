@@ -6,9 +6,21 @@
     $tbs = new clsTinyButStrong;
     session_start();
     only_unauth();
+    $message="";
+    if(is_connected()){
+        $connexionStatus = "connected";
+        $connexionNavBar = "logout";
+        $nav = "profile";
+        $navLink = "user";
+    }
+    else{
+        $connexionStatus = "not-connected";
+        $connexionNavBar = "login";
+        $nav = "register";
+        $navLink = "register";
+    }
     try {
         $pdo = new PDO($host, $login, $password);
-        $message = "connexion établie";
         if(isset($_POST["pseudo"])){
             $res=$pdo->prepare("SELECT * FROM `user` WHERE pseudo=:pseudo AND password=:password");
             $res->bindParam(":pseudo",$_POST["pseudo"]);

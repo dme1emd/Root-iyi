@@ -6,7 +6,20 @@
     include_once "../models/categoryModele.php";
     include_once "../context/authContext.php";
     session_start();
-    //admin_only();
+    admin_only();
+    $message="";
+    if(is_connected()){
+        $connexionStatus = "connected";
+        $connexionNavBar = "logout";
+        $nav = "profile";
+        $navLink = "user";
+    }
+    else{
+        $connexionStatus = "not-connected";
+        $connexionNavBar = "login";
+        $nav = "register";
+        $navLink = "register";
+    }
     $rows = "Category"::retreiveCategories();
     $tbs = new clsTinyButStrong;
         if(isset($_POST["title"])){
